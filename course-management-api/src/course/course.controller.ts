@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Put, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
@@ -29,12 +29,18 @@ export class CourseController {
     @UseInterceptors(FilesInterceptor('files', 10,
         {
             storage: diskStorage({
-                destination: './uploads',
+                destination: './src/uploads',
                 filename: (req, file, callback) => {
                     const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9);
                     callback(null, `${uniqueName}${extname(file.originalname)}`);
                 },
-            })
+            }),
+            fileFilter: (req, file, callback) => {
+                if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/)) {
+                    return callback(new BadRequestException('Invalid file type'), false);
+                }
+                callback(null, true);
+            }
         }
     ))
     uploadCourseMaterial(@UploadedFiles() files: Express.Multer.File[]) {
