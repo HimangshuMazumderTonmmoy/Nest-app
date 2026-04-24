@@ -3,6 +3,8 @@ import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { extname } from 'path';
 
 @Controller('course')
 export class CourseController {
@@ -24,7 +26,17 @@ export class CourseController {
     }
 
     @Post(':id/upload')
-    @UseInterceptors(FilesInterceptor('files', 10))
+    @UseInterceptors(FilesInterceptor('files', 10,
+        {
+            storage: diskStorage({
+                destination: './uploads',
+                filename: (req, file, callback) => {
+                    const uniqueName = Date.now() + '-' + Math.round(Math.random() * 1e9);
+                    callback(null, `${uniqueName}${extname(file.originalname)}`);
+                },
+            })
+        }
+    ))
     uploadCourseMaterial(@UploadedFiles() files: Express.Multer.File[]) {
         return {
             message: 'File uploaded successfully',
