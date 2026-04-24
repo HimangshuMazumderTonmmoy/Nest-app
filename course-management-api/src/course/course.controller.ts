@@ -23,6 +23,15 @@ export class CourseController {
         return this.courseService.createCourse(createCourseDto);
     }
 
+    @Post(':id/upload')
+    @UseInterceptors(FileInterceptor('file'))
+    uploadCourseMaterial(@UploadedFile() file: Express.Multer.File) {
+        return {
+            message: 'File uploaded successfully',
+            filename: file.originalname,
+        };
+    }
+
     @Put(':id')
     updateCourse(@Param('id') id: number, @Body() createCourseDto: CreateCourseDto): { message: string, ID: number, data: CreateCourseDto } {
         return this.courseService.updateCourse(id, createCourseDto);
