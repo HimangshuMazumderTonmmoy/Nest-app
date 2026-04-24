@@ -8,32 +8,32 @@ export class CourseController {
     constructor(private readonly courseService: CourseService) { }
 
     @Get()
-    getAllCourses(): string {
+    getAllCourses(): { message: string, data: CreateCourseDto[] } {
         return this.courseService.getAllCourses();
     }
 
     @Get(':id')
-    getCourseById(@Param('id') id: number): string {
+    getCourseById(@Param('id') id: number): { message: string, ID: number } {
         return this.courseService.getCourseById(id);
     }
 
     @Post()
-    createCourse(@Body() createCourseDto: CreateCourseDto): string {
+    createCourse(@Body() createCourseDto: CreateCourseDto): { message: string, data: CreateCourseDto } {
         return this.courseService.createCourse(createCourseDto);
     }
 
     @Put(':id')
-    updateCourse(@Param('id') id: number, @Body() createCourseDto: CreateCourseDto): string {
+    updateCourse(@Param('id') id: number, @Body() createCourseDto: CreateCourseDto): { message: string, ID: number, data: CreateCourseDto } {
         return this.courseService.updateCourse(id, createCourseDto);
     }
 
     @Patch(':id')
-    patchCourse(@Param('id') id: number, @Body() updateCourseDto: UpdateCourseDto): string {
+    patchCourse(@Param('id') id: number, @Body() updateCourseDto: UpdateCourseDto): { message: string, ID: number, data: UpdateCourseDto } {
         return this.courseService.patchCourse(id, updateCourseDto);
     }
 
     @Delete(':id')
-    deleteCourse(@Param('id') id: number): string {
+    deleteCourse(@Param('id') id: number): { message: string, ID: number } {
         return this.courseService.deleteCourse(id);
     }
 }
