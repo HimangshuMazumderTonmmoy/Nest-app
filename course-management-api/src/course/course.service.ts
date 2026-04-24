@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { CreateCourseDto } from './dto/create-course.dto';
 
 @Injectable()
 export class CourseService {
@@ -10,11 +11,11 @@ export class CourseService {
         return `Get Course with ID: ${id}`;
     }
 
-    createCourse(): string {
+    createCourse(createCourseDto: CreateCourseDto): string {
         return "Create Course";
     }
 
-    updateCourse(id: number): string {
+    updateCourse(id: number, createCourseDto: CreateCourseDto): string {
         return `Update Course ${id}`;
     }
 
