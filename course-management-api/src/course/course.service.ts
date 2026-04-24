@@ -6,7 +6,7 @@ export class CourseService {
         return "Get all courses";
     }
 
-    getCourseById(id: string): string {
+    getCourseById(id: number): string {
         return `Get Course with ID: ${id}`;
     }
 
@@ -14,15 +14,15 @@ export class CourseService {
         return "Create Course";
     }
 
-    updateCourse(id: string): string {
+    updateCourse(id: number): string {
         return `Update Course ${id}`;
     }
 
-    patchCourse(id: string): string {
+    patchCourse(id: number): string {
         return `Patch Course ${id}`;
     }
 
-    deleteCourse(id: string): string {
+    deleteCourse(id: number): string {
         return `Delete Course ${id}`;
     }
 }
