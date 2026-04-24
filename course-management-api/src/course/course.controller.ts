@@ -35,11 +35,16 @@ export class CourseController {
                     callback(null, `${uniqueName}${extname(file.originalname)}`);
                 },
             }),
+
             fileFilter: (req, file, callback) => {
                 if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/)) {
                     return callback(new BadRequestException('Invalid file type'), false);
                 }
                 callback(null, true);
+            },
+
+            limits: {
+                fileSize: 1024 * 1024 * 2, // 2MB
             }
         }
     ))
