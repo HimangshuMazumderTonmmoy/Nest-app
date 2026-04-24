@@ -1,8 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('course')
 export class CourseController {
@@ -24,11 +24,11 @@ export class CourseController {
     }
 
     @Post(':id/upload')
-    @UseInterceptors(FileInterceptor('file'))
-    uploadCourseMaterial(@UploadedFile() file: Express.Multer.File) {
+    @UseInterceptors(FilesInterceptor('files', 10))
+    uploadCourseMaterial(@UploadedFiles() files: Express.Multer.File[]) {
         return {
             message: 'File uploaded successfully',
-            filename: file.originalname,
+            filename: files.map(file => file.originalname),
         };
     }
 
