@@ -6,7 +6,7 @@ import { NotificationService } from 'src/notification/notification.service';
 export class EnrollmentService {
     constructor(
         private courseService: CourseService,
-        
+
         @Inject(forwardRef(() => NotificationService))
         private readonly notificationService: NotificationService,
     ) {}
@@ -17,6 +17,7 @@ export class EnrollmentService {
 
     enrollStudent(studentName: string, courseId: number): {message: string, student: string, course: {message: string, ID: number}} {
         const course: {message: string, ID: number} = this.courseService.getCourseById(courseId);
+        this.notificationService.sendNotification(studentName, `You are enrolled in the course with ID: ${courseId}`);
         return {message: "Student enrolled successfully", student: studentName, course: course}
     }
 }
