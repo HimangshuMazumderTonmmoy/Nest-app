@@ -16,7 +16,7 @@ let NotificationModule = class NotificationModule {
 exports.NotificationModule = NotificationModule;
 exports.NotificationModule = NotificationModule = __decorate([
     (0, common_1.Module)({
-        imports: [enrollment_module_1.EnrollmentModule, (0, common_1.forwardRef)(() => enrollment_module_1.EnrollmentModule)],
+        imports: [(0, common_1.forwardRef)(() => enrollment_module_1.EnrollmentModule)],
         controllers: [notification_controller_1.NotificationController],
         providers: [notification_service_1.NotificationService],
         exports: [notification_service_1.NotificationService],

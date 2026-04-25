@@ -4,7 +4,7 @@ import { NotificationService } from './notification.service';
 import { EnrollmentModule } from 'src/enrollment/enrollment.module';
 
 @Module({
-  imports: [EnrollmentModule, forwardRef(() => EnrollmentModule)],
+  imports: [forwardRef(() => EnrollmentModule)],
   controllers: [NotificationController],
   providers: [NotificationService],
   exports: [NotificationService],

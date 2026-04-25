@@ -21,14 +21,11 @@ let NotificationService = class NotificationService {
         this.enrollmentService = enrollmentService;
     }
     sendNotification(studentName, message) {
-        return {
-            studentName: studentName,
-            message: message,
-            timestamp: new Date().toISOString(),
-        };
+        return { message: "Notification sent successfully", data: { student: studentName, notification: message } };
     }
     checkEnrollmentAndNotify(studentName, courseId) {
-        return this.enrollmentService.getEnrollments();
+        const enrollments = this.enrollmentService.getEnrollments();
+        return this.sendNotification(studentName, `You are enrolled in the course with ID: ${courseId}`);
     }
 };
 exports.NotificationService = NotificationService;
