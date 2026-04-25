@@ -10,13 +10,17 @@ exports.EnrollmentModule = void 0;
 const common_1 = require("@nestjs/common");
 const enrollment_controller_1 = require("./enrollment.controller");
 const enrollment_service_1 = require("./enrollment.service");
+const course_module_1 = require("../course/course.module");
+const notification_module_1 = require("../notification/notification.module");
 let EnrollmentModule = class EnrollmentModule {
 };
 exports.EnrollmentModule = EnrollmentModule;
 exports.EnrollmentModule = EnrollmentModule = __decorate([
     (0, common_1.Module)({
+        imports: [course_module_1.CourseModule, (0, common_1.forwardRef)(() => notification_module_1.NotificationModule)],
         controllers: [enrollment_controller_1.EnrollmentController],
-        providers: [enrollment_service_1.EnrollmentService]
+        providers: [enrollment_service_1.EnrollmentService],
+        exports: [enrollment_service_1.EnrollmentService],
     })
 ], EnrollmentModule);
 //# sourceMappingURL=enrollment.module.js.map

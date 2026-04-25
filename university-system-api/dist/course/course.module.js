@@ -16,7 +16,8 @@ exports.CourseModule = CourseModule;
 exports.CourseModule = CourseModule = __decorate([
     (0, common_1.Module)({
         controllers: [course_controller_1.CourseController],
-        providers: [course_service_1.CourseService]
+        providers: [course_service_1.CourseService],
+        exports: [course_service_1.CourseService],
     })
 ], CourseModule);
 //# sourceMappingURL=course.module.js.map
