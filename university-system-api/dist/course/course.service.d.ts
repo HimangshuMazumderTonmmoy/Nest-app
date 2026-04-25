@@ -1,7 +1,10 @@
 export declare class CourseService {
     getAllCourses(): {
         message: string;
-        data: any[];
+        data: {
+            name: string;
+            code: string;
+        }[];
     };
     getCourseById(id: number): {
         message: string;

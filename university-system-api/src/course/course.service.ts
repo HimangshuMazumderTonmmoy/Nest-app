@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CourseService {
-    getAllCourses(): { message: string, data: any[] } {
+    getAllCourses(): { message: string, data: {name: string, code: string}[] } {
         return { message: "All courses fetched", data: [] }
     }
 
