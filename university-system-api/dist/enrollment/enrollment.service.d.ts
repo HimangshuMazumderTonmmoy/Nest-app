@@ -16,6 +16,7 @@ export declare class EnrollmentService {
         }[];
     };
     enrollStudent(studentName: string, courseId: number): {
+        notification: string;
         message: string;
         student: string;
         course: {

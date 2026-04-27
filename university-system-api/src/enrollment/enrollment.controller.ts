@@ -7,7 +7,7 @@ export class EnrollmentController {
 
     @Get()
     getEnrollments(): {message: string, data: {message: string, student: string, course: {message: string, ID: number}}[]} {
-        return this.enrollmentService.getEnrollments()
+        return this.enrollmentService.getEnrollments();
     }
 
     @Post()

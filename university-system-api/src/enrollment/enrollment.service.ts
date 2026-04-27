@@ -15,9 +15,9 @@ export class EnrollmentService {
         return { message: 'All enrollments fetched', data: [] }
     }
 
-    enrollStudent(studentName: string, courseId: number): {message: string, student: string, course: {message: string, ID: number}} {
+    enrollStudent(studentName: string, courseId: number): {notification: string, message: string, student: string, course: {message: string, ID: number}} {
         const course: {message: string, ID: number} = this.courseService.getCourseById(courseId);
-        this.notificationService.sendNotification(studentName, `You are enrolled in the course with ID: ${courseId}`);
-        return {message: "Student enrolled successfully", student: studentName, course: course}
+        const notification: {student: string, notification: string} = this.notificationService.sendNotification(studentName, "Notification sent successfully");
+        return {notification: notification.notification, message: "Student enrolled successfully", student: studentName, course: course}
     }
 }

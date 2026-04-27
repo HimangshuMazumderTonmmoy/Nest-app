@@ -28,8 +28,8 @@ let EnrollmentService = class EnrollmentService {
     }
     enrollStudent(studentName, courseId) {
         const course = this.courseService.getCourseById(courseId);
-        this.notificationService.sendNotification(studentName, `You are enrolled in the course with ID: ${courseId}`);
-        return { message: "Student enrolled successfully", student: studentName, course: course };
+        const notification = this.notificationService.sendNotification(studentName, "Notification sent successfully");
+        return { notification: notification.notification, message: "Student enrolled successfully", student: studentName, course: course };
     }
 };
 exports.EnrollmentService = EnrollmentService;

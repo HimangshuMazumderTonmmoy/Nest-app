@@ -21,7 +21,7 @@ let NotificationService = class NotificationService {
         this.enrollmentService = enrollmentService;
     }
     sendNotification(studentName, message) {
-        return { message: "Notification sent successfully", data: { student: studentName, notification: message } };
+        return { student: studentName, notification: message };
     }
     checkEnrollmentAndNotify(studentName, courseId) {
         const enrollments = this.enrollmentService.getEnrollments();

@@ -8,8 +8,8 @@ export class NotificationService {
         private readonly enrollmentService: EnrollmentService,
     ) {}
 
-    sendNotification(studentName: string, message: string): {message: string, data: {student: string, notification: string}} {
-        return {message: "Notification sent successfully", data: {student: studentName, notification: message}}
+    sendNotification(studentName: string, message: string): {student: string, notification: string} {
+        return {student: studentName, notification: message}
     }
 
     checkEnrollmentAndNotify(studentName: string, courseId: number){
