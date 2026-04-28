@@ -1,8 +1,7 @@
 # compiled output
-/dist
-/node_modules
-/build
-/course-management-api
+/university-system-api/dist
+/university-system-api/node_modules
+/university-system-api/build
 
 # Logs
 logs
