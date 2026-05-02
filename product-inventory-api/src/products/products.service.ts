@@ -76,4 +76,15 @@ export class ProductsService {
             data: updated
         };
     }
+
+    async remove(id: number): Promise<{message: string, id: number}> {
+        await this.findOne(id);
+
+        await this.productsRepo.delete(id);
+
+        return {
+            message: "Product deleted successfully",
+            id,
+        }
+    }
 }

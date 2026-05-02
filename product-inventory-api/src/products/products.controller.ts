@@ -33,4 +33,11 @@ export class ProductsController {
     async replace(@Param('id') id: number, @Body() dto: UpdateProductDto) {
         return this.productsService.replace(id, dto);
     }
+
+    @Delete(':id')
+    async remove(@Param('id') id: number) {
+        return this.productsService.remove(id);
+    }
+
+    
 }
