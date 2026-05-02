@@ -16,4 +16,9 @@ export class ProductsController {
     async findAll() {
         return this.productsService.findAll();
     }
+
+    @Get(':id')
+    async findOne(@Param('id') id: string) {
+        return this.productsService.findOne(+id);
+    }
 }

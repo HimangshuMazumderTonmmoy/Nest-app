@@ -23,7 +23,7 @@ export class ProductsService {
         };
     }
 
-        async findAll(): Promise<{message: string, count: number, data: Products[]}> {
+    async findAll(): Promise<{message: string, count: number, data: Products[]}> {
         const products = await this.productsRepo.find({
             order: {
                 createdAt: 'DESC',
@@ -35,5 +35,19 @@ export class ProductsService {
             count: products.length,
             data: products,
         };
+    }
+
+    async findOne(id:number): Promise<{message: string, data:Products}> {
+        const product: Products | null = await this.productsRepo.findOne({
+            where: {id}
+        })
+
+        if(!product)
+            throw new NotFoundException(`Product with ID ${id} not found `);
+
+        return {
+            message: "Product fetched successfully",
+            data: product,
+        }
     }
 }
