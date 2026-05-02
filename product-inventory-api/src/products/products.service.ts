@@ -22,4 +22,18 @@ export class ProductsService {
             data: savedProduct,
         };
     }
+
+        async findAll(): Promise<{message: string, count: number, data: Products[]}> {
+        const products = await this.productsRepo.find({
+            order: {
+                createdAt: 'DESC',
+            },
+        });
+
+        return {
+            message: "Products fetched successfully",
+            count: products.length,
+            data: products,
+        };
+    }
 }
