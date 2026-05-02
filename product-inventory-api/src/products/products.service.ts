@@ -50,4 +50,17 @@ export class ProductsService {
             data: product,
         }
     }
+
+    async update(id: number, dto: PartialUpdateProductDto): Promise<{message: string, data: Products}> {
+        const { data } = await this.findOne(id);
+
+        const updated: Products = await this.productsRepo.merge(data, dto);
+
+        await this.productsRepo.save(updated);
+        
+        return {
+            message: "Product updated successfully",
+            data: updated,
+        };
+    }
 }
