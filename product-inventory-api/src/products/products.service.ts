@@ -87,4 +87,16 @@ export class ProductsService {
             id,
         }
     }
+
+    async findByCategory(category: string): Promise<{message: string, count: number, data: Products[]}> {
+        const products: Products[] = await this.productsRepo.find({
+            where: {category}
+        });
+
+        return {
+            message: `Products in ${category} category fetched successfully`,
+            count: products.length,
+            data: products,
+        };
+    }
 }
