@@ -3,6 +3,10 @@
 /course-management-api/node_modules
 /course-management-api/build
 
+/university-system-api/dist
+/university-system-api/node_modules
+/university-system-api/build
+
 # Logs
 logs
 *.log
