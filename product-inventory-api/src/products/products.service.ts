@@ -61,4 +61,19 @@ export class ProductsService {
             data: updatedProduct,
         };
     }
+
+    async replace(id: number, dto: UpdateProductDto): Promise<{message: string, data: Products}> {
+        await this.findOne(id);
+
+        const productEntity = this.productsRepo.create({
+            id,
+            ...dto
+        });        
+        const updated: Products = await this.productsRepo.save(productEntity);
+
+        return {
+            message: "Product updated successfully",
+            data: updated
+        };
+    }
 }

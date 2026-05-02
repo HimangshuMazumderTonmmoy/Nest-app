@@ -3,6 +3,7 @@ import { ProductsService } from './products.service';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { Put, Body, Post, Get, Param, Delete, Patch } from '@nestjs/common';
 import { PartialUpdateProductDto } from './dtos/partial-update-product.dto';
+import { UpdateProductDto } from './dtos/update-product.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -19,12 +20,17 @@ export class ProductsController {
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: string) {
-        return this.productsService.findOne(+id);
+    async findOne(@Param('id') id: number) {
+        return this.productsService.findOne(id);
     }
 
     @Patch(':id')
-    async update(@Param('id') id: string, @Body() dto: PartialUpdateProductDto) {
-        return this.productsService.update(+id, dto);
+    async update(@Param('id') id: number, @Body() dto: PartialUpdateProductDto) {
+        return this.productsService.update(id, dto);
+    }
+
+    @Put(':id')
+    async replace(@Param('id') id: number, @Body() dto: UpdateProductDto) {
+        return this.productsService.replace(id, dto);
     }
 }
