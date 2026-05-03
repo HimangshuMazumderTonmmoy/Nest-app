@@ -7,6 +7,10 @@
 /university-system-api/node_modules
 /university-system-api/build
 
+product-inventory-api/dist
+product-inventory-api/node_modules
+product-inventory-api/build
+
 # Logs
 logs
 *.log
